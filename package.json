@@ -14,6 +14,7 @@
   ],
   "author": "GALV",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
