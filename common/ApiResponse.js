@@ -2,7 +2,7 @@ export class ApiResponse {
   statusCode = 200;
   message = 'Success';
   errorMessage = null;
-  fields = []; // map this from service validations
+  fields = [];
   result = null;
 
   ok = (payload) => {
@@ -17,10 +17,11 @@ export class ApiResponse {
     this.result = payload;
   };
 
-  badRequest = (errorMessage) => {
+  badRequest = (errorMessage, fields) => {
     this.statusCode = 400;
     this.message = 'Bad_Request';
     this.errorMessage = errorMessage;
+    this.fields = fields;
   };
 
   forbidden = (errorMessage) => {
