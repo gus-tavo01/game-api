@@ -1,18 +1,19 @@
 import dotenv from 'dotenv';
 import express from 'express';
-
-// routes
-import { authController } from './controllers/auth.controller.js';
-import { charactersController } from './controllers/characters.controller.js';
+import cors from 'cors';
+import routes from './routes/index.js';
 
 dotenv.config();
 
-const apiPrefix = '/api/v1';
 const port = process.env.PORT || 3000;
 const app = express();
 
-// arrange controllers to routes
-app.use(`${apiPrefix}/auth`, authController);
-app.use(`${apiPrefix}/characters`, charactersController);
+// setup db, passport
+
+// add middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(routes);
 
 app.listen(port);
