@@ -11,4 +11,4 @@ router.post('/', (req, res) => {
   // TODO
 });
 
-export const characters = router;
+export const charactersController = router;
