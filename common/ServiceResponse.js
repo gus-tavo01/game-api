@@ -1,4 +1,6 @@
-export class ServiceResponse {
+class ServiceResponse {
   payload = null;
   fields = [];
 }
+
+module.exports = ServiceResposne;

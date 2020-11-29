@@ -1,4 +1,4 @@
-export class ApiResponse {
+class ApiResponse {
   statusCode = 200;
   message = 'Success';
   errorMessage = null;
@@ -54,3 +54,5 @@ export class ApiResponse {
     this.errorMessage = errorMessage;
   };
 }
+
+module.exports = ApiResponse;
