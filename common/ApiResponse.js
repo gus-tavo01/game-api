@@ -24,8 +24,14 @@ class ApiResponse {
     this.fields = fields;
   };
 
-  forbidden = (errorMessage) => {
+  unauthorized = (errorMessage) => {
     this.statusCode = 401;
+    this.message = 'Unauthorized';
+    this.errorMessage = errorMessage;
+  };
+
+  forbidden = (errorMessage) => {
+    this.statusCode = 403;
     this.message = 'Forbidden';
     this.errorMessage = errorMessage;
   };
