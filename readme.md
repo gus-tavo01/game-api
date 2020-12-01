@@ -10,12 +10,14 @@
 - Passport
 - Nodemon
 - Express
+- jsonwebtoken
+- passport
+- bcrypt
 
 ## Controllers
 
 ### Request flow
 
-- validate if authenticated
 - validate request parameters/body ? tbd
 - consume service
 - generate api response
@@ -35,6 +37,8 @@
   - POST
   - PUT
   - PATCH
+
+### Accounts ??
 
 ## Application
 
@@ -59,18 +63,7 @@
 
 ## Authentication
 
-### Get token flow
-
-- validate credentials (username, password)
-- generate token
-- return response with bearer token
-
-### Configure passport
-
-- extract token from headers
-- validate token?
-- validate user is found
-- implement auth middleware on routes
+- bearerAuth middleware for routes
 
 ## Testing
 
@@ -87,10 +80,15 @@
 
 ## TODOS
 
+- Define repository initialization
 - Define service layer flow
 - Define and create a validator
   - common string validations
   - common number validations
   - generate fields array containing non passed validations
 - Define a mapper? tbd
-- Configure passport JWT strategy
+- Finish Auth module
+  - generate hashed password on login
+  - code clean up
+  - add missing validations
+  - create reusable method to generate password?
