@@ -10,7 +10,10 @@ class AuthController {
   login = async (req, res) => {
     const { username, password } = req.body;
     const apiResponse = new ApiResponse();
-    const serviceResponse = await this.accountsService.getByUsername(username);
+    try {
+      const serviceResponse = await this.accountsService.getByUsername(
+        username
+      );
 
     if (serviceResponse.fields.length) {
       apiResponse.badRequest('Invalid username field', serviceResponse.fields);
@@ -39,6 +42,10 @@ class AuthController {
     const result = { token, expiresIn };
     apiResponse.ok(result);
     return res.status(200).json(apiResponse);
+    } catch (error) {
+      apiResponse.internalServerError(error.message);
+      return res.status(apiResponse.statusCode).json(apiResponse);
+    }
   };
 
   createLogin = (req, res) => {};
