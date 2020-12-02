@@ -54,9 +54,9 @@ class ApiResponse {
     this.errorMessage = errorMessage;
   };
 
-  serverError = (errorMessage) => {
+  internalServerError = (errorMessage) => {
     this.statusCode = 500;
-    this.message = 'Server_Error';
+    this.message = 'Internal_Server_Error';
     this.errorMessage = errorMessage;
   };
 }
