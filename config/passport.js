@@ -11,7 +11,11 @@ function configureStrategy(passport) {
   };
   const jwtStrategy = new JwtStrategy(options, (jwt_payload, done) => {
     accountsRepository.findOne(jwt_payload.sub).then((account) => {
-      done(null, account);
+      if (account) {
+        done(null, account);
+      } else {
+        done('Error getting the user account', false);
+      }
     });
   });
   passport.use(jwtStrategy);
