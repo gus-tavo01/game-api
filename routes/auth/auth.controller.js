@@ -1,28 +1,36 @@
 const jsonwebtoken = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const ApiResponse = require('../../common/ApiResponse');
-// use service instead repos
-const AccountsRepository = require('../../repositories/accounts.repository');
+const AccountsService = require('../../services/accounts.service');
 
 class AuthController {
   constructor() {
-    this.accountsRepository = new AccountsRepository();
+    // TODO
+    // receive this as a dependency
+    this.accountsService = new AccountsService();
   }
 
   login = async (req, res) => {
-    const apiResponse = new ApiResponse();
     const { username, password } = req.body;
-    const accountsResponse = await this.accountsRepository.find({ username });
-    const account = accountsResponse[0];
+    const apiResponse = new ApiResponse();
+    const serviceResponse = await this.accountsService.getByUsername(username);
 
-    if (!account) {
-      apiResponse.unauthorized('Invalid credentials');
+    if (serviceResponse.fields.length) {
+      apiResponse.badRequest('Invalid username field', serviceResponse.fields);
       return res.status(apiResponse.statusCode).json(apiResponse);
     }
 
-    // TODO
-    // hash body.password
-    // compare hashed result with DB stored password
-    // if false, return 401 response
+    if (!serviceResponse.result && !serviceResponse.fields.length) {
+      apiResponse.unauthorized('Invalid credentials');
+      return res.status(apiResponse.statusCode).json(apiResponse);
+    }
+    const account = serviceResponse.result;
+    const passwordMatch = await bcrypt.compare(password, account.passwordHash);
+
+    if (!passwordMatch) {
+      apiResponse.unauthorized('Invalid credentials');
+      return res.status(apiResponse.statusCode).json(apiResponse);
+    }
 
     const secret = process.env.JWT_SECRET;
     const expiresIn = '2h';
