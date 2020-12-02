@@ -1,13 +1,10 @@
 const jsonwebtoken = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const ApiResponse = require('../../common/ApiResponse');
-const AccountsService = require('../../services/accounts.service');
 
 class AuthController {
-  constructor() {
-    // TODO
-    // receive this as a dependency
-    this.accountsService = new AccountsService();
+  constructor(accountsService) {
+    this.accountsService = accountsService;
   }
 
   login = async (req, res) => {
