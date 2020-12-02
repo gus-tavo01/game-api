@@ -37,8 +37,42 @@
   - POST
   - PUT
   - PATCH
+- Entity
+  - className
+  - level
+  - name
+  - stats
+    - atk
+    - def
+    - evasion
+    - special dmg
+    - special def
+    - hp
+    - sp
 
-### Accounts ??
+### Accounts controller
+
+- api/v1/accounts
+  - GET
+  - GET
+  - POST
+  - PUT
+  - PATCH
+
+### Items controller
+
+- api/v1/items
+  - GET
+  - GET
+  - POST
+  - PUT
+  - PATCH
+- Entity
+  - name
+  - description
+  - type
+  - additionalInfo
+  - level
 
 ## Application
 
@@ -48,8 +82,8 @@
   - class
 - Store accounts and arrange to characters
   - username
-  - email
   - hashed password
+  - email
   - create date
 
 ## Service
@@ -58,21 +92,19 @@
 - retrieve data from repository
 - map from repo to DTO
 - return service response
-  - payload
+  - result
   - fields
 
 ## Authentication
 
-- bearerAuth middleware for routes
+- bearerAuth middleware for protected routes
 
 ## Testing
 
-- What to test
-  - controllers
-  - service methods
-- unit
-  - No mocked dependencies (except express)
+- How to test
   - assert against express res.json, res.status calls
+- unit
+  - controllers
 - integration
   - E2E
   - CRUD
@@ -80,15 +112,10 @@
 
 ## TODOS
 
-- Define repository initialization
 - Define service layer flow
 - Define and create a validator
   - common string validations
   - common number validations
   - generate fields array containing non passed validations
+- Define repository initialization
 - Define a mapper? tbd
-- Finish Auth module
-  - generate hashed password on login
-  - code clean up
-  - add missing validations
-  - create reusable method to generate password?
