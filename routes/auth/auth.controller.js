@@ -1,5 +1,5 @@
-const jsonwebtoken = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const jsonwebtoken = require('jsonwebtoken');
 const ApiResponse = require('../../common/ApiResponse');
 
 class AuthController {
