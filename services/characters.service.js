@@ -10,7 +10,6 @@
 
 class CharactersService {
   findById = async (id) => {
-    console.log('--service');
     return { name: 'freezing', className: 'Cat', level: id };
   };
 }
