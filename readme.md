@@ -93,7 +93,7 @@
 - common validations
 - retrieve data from repository
 - map from repo to DTO
-- return service response
+- return service response -> TBD
   - result
   - fields
 
@@ -114,7 +114,13 @@
 
 ## TODOS
 
+- Handle and test repository methods
+  - get many
+  - update
+  - delete
 - Define service layer flow
+  - define service response
+  - handle repository exceptions/errors
 - Define and create a validator
   - common string validations
   - common number validations
