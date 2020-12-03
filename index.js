@@ -5,13 +5,14 @@ const passport = require('passport');
 const routes = require('./routes/index');
 // configurations
 const configureStrategy = require('./config/passport');
+const configureDb = require('./config/database');
 
 const port = process.env.PORT || 3000;
 const app = express();
 
 // setup db, passport
 configureStrategy(passport);
-// configure DB
+configureDb();
 
 // add middlewares
 app.use(express.json());
