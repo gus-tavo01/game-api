@@ -67,12 +67,6 @@
   - POST
   - PUT
   - PATCH
-- Entity
-  - name
-  - description
-  - type
-  - additionalInfo
-  - level
 
 ## Application
 
@@ -85,6 +79,14 @@
   - hashed password
   - email
   - create date
+  - country
+- Store game items
+  - name
+  - description
+  - type
+  - additionalInfo
+    - Object
+  - level
 
 ## Service
 
@@ -117,5 +119,6 @@
   - common string validations
   - common number validations
   - generate fields array containing non passed validations
-- Define repository initialization
+- Define how dependencies are resolved
 - Define a mapper? tbd
+- Define DB entities
