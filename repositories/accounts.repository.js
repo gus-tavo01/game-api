@@ -1,26 +1,19 @@
-class AccountsRepository {
-  accounts = [
-    {
-      id: 2,
-      username: 'ticky',
-      passwordHash:
-        '$2b$10$A0ka6mNlRIw.Qa4mN3x3OOGU1JfEv03Nwl.GhRyesL2on84L8HyKO',
-    },
-  ];
+const Account = require('../db/models/Account.model');
 
+class AccountsRepository {
   find = async (filters) => {
     const { username } = filters;
-    const result = this.accounts.find((acc) => acc.username === username);
-    return [result];
+    const query = { username };
+    return Account.find(query);
   };
 
   findOne = async (id) => {
-    return this.accounts.find((acc) => acc.id === id);
+    return Account.findById(id);
   };
 
   add = async (account) => {
-    this.accounts.push(account);
-    return this.accounts.length;
+    const result = new Account(account).save();
+    return result;
   };
 
   // remove
