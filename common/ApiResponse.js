@@ -3,18 +3,18 @@ class ApiResponse {
   message = 'Success';
   errorMessage = null;
   fields = [];
-  result = null;
+  payload = null;
 
   ok = (payload) => {
     this.statusCode = 200;
     this.message = 'Success';
-    this.result = payload;
+    this.payload = payload;
   };
 
   created = (payload) => {
     this.statusCode = 201;
     this.message = 'Created';
-    this.result = payload;
+    this.payload = payload;
   };
 
   badRequest = (errorMessage, fields) => {
