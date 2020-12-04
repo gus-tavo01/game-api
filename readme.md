@@ -16,11 +16,10 @@
 
 ## Controllers
 
-### Request flow
-
 - validate request parameters/body ? tbd
-- consume service
-- generate api response
+- consume services
+- create api response
+- business logic
 
 ### Auth controller
 
@@ -79,7 +78,8 @@
   - hashed password
   - email
   - create date
-  - country
+  - last login date
+  - is active
 - Store game items
   - name
   - description
@@ -91,15 +91,25 @@
 ## Service
 
 - common validations
-- retrieve data from repository
-- map from repo to DTO
+- consumes repository
+- map from entity to DTO
 - return service response -> TBD
   - result
   - fields
 
+## Repository
+
+- No business rules here
+- consumes ORM
+
+## Data
+
+- ORM
+- Db connection query
+
 ## Authentication
 
-- bearerAuth middleware for protected routes
+- bearerAuth middleware for protected routes JWT strategy
 
 ## Testing
 
@@ -119,12 +129,11 @@
   - update
   - delete
 - Define service layer flow
-  - define service response
-  - handle repository exceptions/errors
+  - how to handle and consume validator
 - Define and create a validator
   - common string validations
   - common number validations
   - generate fields array containing non passed validations
-- Define how dependencies are resolved
+- Define how dependencies are resolved (at router?)
 - Define a mapper? tbd
 - Define DB entities
