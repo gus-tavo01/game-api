@@ -1,5 +1,3 @@
-// TODO
-// entire service flow
 const ServiceResponse = require('../common/ServiceResponse');
 const stringValidator = require('../helpers/validators/strings.validator');
 
@@ -26,8 +24,29 @@ class AccountsService {
   };
 
   post = async (account) => {
+    const validations = [
+      stringValidator.isString(account.username, 'username'),
+      stringValidator.isEmpty(account.username, 'username'),
+      stringValidator.isString(account.password, 'password'),
+      stringValidator.isEmpty(account.password, 'password'),
+      stringValidator.hasLength(
+        account.password,
+        { min: 8, max: 25 },
+        'password'
+      ),
+      stringValidator.isString(account.email, 'email'),
+      stringValidator.isEmail(account.email, 'email'),
+    ];
+    const serviceResponse = new ServiceResponse();
+    serviceResponse.addValidationErrors(validations);
+
+    if (serviceResponse.fields.length) {
+      return serviceResponse;
+    }
+
     const result = await this.accountsRepository.add(account);
-    return { result, fields: [] };
+    serviceResponse.result = result;
+    return serviceResponse;
   };
 
   // delete
