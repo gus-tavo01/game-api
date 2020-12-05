@@ -1,6 +1,12 @@
 class ServiceResponse {
-  payload = null;
+  result = null;
   fields = [];
+
+  addValidationErrors = (validationErrors) => {
+    if (validationErrors && validationErrors.length) {
+      this.fields = validationErrors.filter((v) => v !== null);
+    }
+  };
 }
 
-module.exports = ServiceResposne;
+module.exports = ServiceResponse;
