@@ -73,6 +73,7 @@
   - character name
   - level
   - class
+    - enum
 - Store accounts and arrange to characters
   - username
   - hashed password
@@ -93,9 +94,7 @@
 - common validations
 - consumes repository
 - map from entity to DTO
-- return service response -> TBD
-  - result
-  - fields
+- return service response
 
 ## Repository
 
@@ -124,16 +123,19 @@
 
 ## TODOS
 
+- Account CRUD
+  - controller methods E2E
+    - POST
+    - GET by id
+    - GET by filters??
+    - DELETE
+    - PATCH
 - Handle and test repository methods
   - get many
   - update
   - delete
-- Define service layer flow
-  - how to handle and consume validator
 - Define and create a validator
-  - common string validations
   - common number validations
-  - generate fields array containing non passed validations
 - Define how dependencies are resolved (at router?)
 - Define a mapper? tbd
 - Define DB entities
