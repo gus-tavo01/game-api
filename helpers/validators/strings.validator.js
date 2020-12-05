@@ -24,7 +24,26 @@ exports.isString = (str, key) => {
   }
 };
 
-exports.isEmail = (email, key) => {
-  // TODO
-  return null;
+exports.hasLength = (str, length, key) => {
+  try {
+    const result = validator.isLength(str, length);
+    if (!result) {
+      return `'${key}' does not have expected characters length '${min}' - '${max}'`;
+    }
+    return null;
+  } catch (err) {
+    return null;
+  }
+};
+
+exports.isEmail = (str, key) => {
+  try {
+    const result = validator.isEmail(str);
+    if (!result) {
+      return `'${key}' is not a valid email`;
+    }
+    return null;
+  } catch (err) {
+    return null;
+  }
 };
