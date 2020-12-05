@@ -1,13 +1,28 @@
 // TODO
 // entire service flow
+const ServiceResponse = require('../common/ServiceResponse');
+const stringValidator = require('../helpers/validators/strings.validator');
+
 class AccountsService {
   constructor(accountsRepository) {
     this.accountsRepository = accountsRepository;
   }
 
   getByUsername = async (username) => {
+    const validations = [
+      stringValidator.isString(username, 'username'),
+      stringValidator.isEmpty(username, 'username'),
+    ];
+    const serviceResponse = new ServiceResponse();
+    serviceResponse.addValidationErrors(validations);
+
+    if (serviceResponse.fields.length) {
+      return serviceResponse;
+    }
+
     const result = await this.accountsRepository.find({ username });
-    return { result: result[0], fields: [] };
+    serviceResponse.result = result[0];
+    return serviceResponse;
   };
 
   post = async (account) => {
