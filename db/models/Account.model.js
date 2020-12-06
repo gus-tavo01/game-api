@@ -20,7 +20,7 @@ const AccountSchema = new Schema({
   },
   lastLoginDate: {
     type: Date,
-    required: true,
+    required: false,
     default: null,
   },
   isActive: {
