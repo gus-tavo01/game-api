@@ -1,5 +1,6 @@
 const ServiceResponse = require('../common/ServiceResponse');
 const stringValidator = require('../helpers/validators/strings.validator');
+const accountMapper = require('../helpers/mappers/account.mapper');
 
 class AccountsService {
   constructor(accountsRepository) {
@@ -19,7 +20,8 @@ class AccountsService {
     }
 
     const result = await this.accountsRepository.find({ username });
-    serviceResponse.result = result[0];
+    const mapped = accountMapper(result[0]);
+    serviceResponse.result = mapped;
     return serviceResponse;
   };
 
