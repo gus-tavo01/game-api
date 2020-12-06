@@ -16,7 +16,11 @@ class AccountsRepository {
     return result;
   };
 
-  // remove
+  removeOne = async (id) => {
+    return Account.deleteOne({ _id: id });
+  };
+
+  // TODO
   // update
 }
 
