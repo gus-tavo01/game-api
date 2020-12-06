@@ -51,14 +51,29 @@ class AccountsService {
     return serviceResponse;
   };
 
-    const result = await this.accountsRepository.add(account);
+  delete = async (id) => {
+    const validations = [
+      stringValidator.isString(id, 'id'),
+      stringValidator.isEmpty(id, 'id'),
+    ];
+    const serviceResponse = new ServiceResponse();
+    serviceResponse.addValidationErrors(validations);
+
+    if (serviceResponse.fields.length) {
+      return serviceResponse;
+    }
+    const result = await this.accountsRepository.removeOne(id);
     serviceResponse.result = result;
     return serviceResponse;
   };
 
-  // delete
-  // put/patch
-  // get
+  patch = async (id, requestObj) => {
+    // validations
+  };
+
+  getByFilters = async (filters) => {
+    // validations
+  };
 }
 
 module.exports = AccountsService;
