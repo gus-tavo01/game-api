@@ -29,14 +29,15 @@ class AccountsService {
     const validations = [
       stringValidator.isString(account.username, 'username'),
       stringValidator.isEmpty(account.username, 'username'),
-      stringValidator.isString(account.password, 'password'),
-      stringValidator.isEmpty(account.password, 'password'),
+      stringValidator.isString(account.passwordHash, 'password'),
+      stringValidator.isEmpty(account.passwordHash, 'password'),
       stringValidator.hasLength(
-        account.password,
+        account.passwordHash,
         { min: 8, max: 25 },
         'password'
       ),
       stringValidator.isString(account.email, 'email'),
+      stringValidator.isEmpty(account.email, 'email'),
       stringValidator.isEmail(account.email, 'email'),
     ];
     const serviceResponse = new ServiceResponse();
@@ -45,6 +46,10 @@ class AccountsService {
     if (serviceResponse.fields.length) {
       return serviceResponse;
     }
+    const result = await this.accountsRepository.add(account);
+    serviceResponse.result = accountMapper(result);
+    return serviceResponse;
+  };
 
     const result = await this.accountsRepository.add(account);
     serviceResponse.result = result;
